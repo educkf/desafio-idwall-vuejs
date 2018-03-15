@@ -4,21 +4,46 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.13",
+    "vue-lazyload": "^1.2.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.41",
+    "@babel/preset-env": "^7.0.0-beta.41",
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
     "@vue/cli-plugin-pwa": "^3.0.0-beta.6",
     "@vue/cli-service": "^3.0.0-beta.6",
+    "@vue/test-utils": "^1.0.0-beta.12",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.0.0-alpha.0",
+    "jest": "^23.0.0-alpha.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.13"
+    "vue-jest": "^2.1.1",
+    "vue-template-compiler": "^2.5.13",
+    "vue-test-utils": "^1.0.0-beta.11"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   },
   "browserslist": [
     "> 1%",

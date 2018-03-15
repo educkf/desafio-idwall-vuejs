@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
+import Store from '@/store'
+
+import Login from './views/Login.vue'
+import Feed from './views/Feed.vue'
 
 Vue.use(Router)
 
@@ -9,13 +11,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'Login',
+      component: Login,
+      beforeEnter: (to, from, next) => {
+        Store.dispatch('checkToken').then((response) => {
+          !response ? next() : next({ path: '/feed' })
+        })
+      }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/feed',
+      name: 'Feed',
+      component: Feed,
+      beforeEnter: (to, from, next) => {
+        Store.dispatch('checkToken').then((response) => {
+          response ? next() : next({ path: '/' })
+        })
+      }
     }
   ]
 })
